@@ -1,6 +1,6 @@
 <!-- 
-:hash: Alias
-v1.0 - Copiando
+:hash: Alias para macOS
+v1.0 - Primeiro teste
  -->
 
 

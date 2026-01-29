@@ -3,10 +3,10 @@ const aliasData = [
     { categoria: 'Harry Potter', alias: 'lumos', comando: 'ls -h' },
     { categoria: 'Harry Potter', alias: 'revelio', comando: 'ls -l -h' },
     { categoria: 'Harry Potter', alias: 'reveliomaxima', comando: 'ls -h -l -a' },
-    { categoria: 'Harry Potter', alias: 'alohomora', comando: 'nautilus .' },
+    { categoria: 'Harry Potter', alias: 'alohomora', comando: 'open .' },
     { categoria: 'Harry Potter', alias: 'avadakedavra', comando: 'sudo shutdown -h now' },
-    { categoria: 'Harry Potter', alias: 'bombarda', comando: 'shutdown' },
-    { categoria: 'Harry Potter', alias: 'protego', comando: 'echo "~~* Protego! (Trancando a tela...) *~~"; loginctl lock-session' },
+    { categoria: 'Harry Potter', alias: 'bombarda', comando: 'sudo shutdown -r now' }, // Reinicia o sistema
+    { categoria: 'Harry Potter', alias: 'protego', comando: 'echo "~~* Protego! (Trancando a tela...) *~~"; "/System/Library/CoreServices/Menu Extras/User.menu/Contents/Resources/CGSession" -suspend' },
 
     // --- Categoria: Português / Úteis ---
     { categoria: 'Português', alias: 'ir', comando: 'cd' },
@@ -14,15 +14,17 @@ const aliasData = [
     { categoria: 'Português', alias: 'listar', comando: 'ls -h' },
     { categoria: 'Português', alias: 'raiz', comando: 'cd /' },
     { categoria: 'Português', alias: 'voltar', comando: 'cd ..' },
-    { categoria: 'Português', alias: 'file', comando: 'nautilus .' },
-    { categoria: 'Português', alias: 'files', comando: 'nautilus .' },
-    { categoria: 'Português', alias: 'explorar', comando: 'nautilus .' },
-    { categoria: 'Português', alias: 'subl', comando: 'flatpak run com.sublimetext.three' },
-    { categoria: 'Português', alias: 'alteraralias', comando: 'subl ~/.bashrc' },
-    { categoria: 'Português', alias: 'salvaralias', comando: 'source ~/.bashrc' },
+    { categoria: 'Português', alias: 'file', comando: 'open .' },
+    { categoria: 'Português', alias: 'files', comando: 'open .' },
+    { categoria: 'Português', alias: 'explorar', comando: 'open .' },
+    { categoria: 'Português', alias: 'subl', comando: 'open -a "Sublime Text"' },
+    { categoria: 'Português', alias: 'alteraralias', comando: 'open -a "Sublime Text" ~/.zshrc' }, // Para macOS (zsh). Se usar bash, troque para ~/.bash_profile
+    { categoria: 'Português', alias: 'salvaralias', comando: 'source ~/.zshrc' }, // Para macOS (zsh). Se usar bash, troque para ~/.bash_profile
 
     // --- Categoria: Sistema de Repositories ---
     { categoria: 'Projetos', alias: 'mennuv', comando: 'cd ~/Repositories/mennuv-pasta && ls' },
+    { categoria: 'Projetos', alias: 'menu', comando: 'cd ~/Repositories/mennuv-pasta && ls' },
+    { categoria: 'Projetos', alias: 'mennu', comando: 'cd ~/Repositories/mennuv-pasta && ls' },
     { categoria: 'Projetos', alias: 'meuweb', comando: 'cd ~/Repositories/meuwebsite-pasta && ls' },
     { categoria: 'Projetos', alias: 'meuwebsite', comando: 'cd ~/Repositories/meuwebsite-pasta && ls' },
     { categoria: 'Projetos', alias: 'outros', comando: 'cd ~/Repositories/outros-pasta && ls' },

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alias - Meus Atalhos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps:wght@400;700&amp;family=Oleo+Script:wght@400;700&amp;display=swap"
+        rel="stylesheet">
+    <!-- OG -->
+    <meta property="og:title" content="Alias - Meus Atalhos">
+    <meta property="og:description" content="Meus atalhos mágicos no terminal">
+    <meta property="og:image" content="https://alias.meuweb.site/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://alias.meuweb.site">
+    <meta property="og:site_name" content="Alias">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Alias - Meus Atalhos">
+    <meta name="twitter:description" content="Meus atalhos mágicos no terminal">
+    <meta name="twitter:image" content="https://alias.meuweb.site/og-image.png">
+</head>
+
+<body class="bg-slate-950 text-slate-100 font-mono">
+    <!-- HEADER -->
+    <header class="bg-slate-900 border-b border-slate-700 py-6">
+        <div class="max-w-5xl mx-auto px-4">
+            <h1 class="text-3xl font-bold text-slate-300"># Alias</h1>
+            <p class="text-slate-500 text-sm mt-1">Meus atalhos mágicos no terminal</p>
+        </div>
+    </header>
+
+    <!-- CONTAINER -->
+    <div class="max-w-5xl mx-auto px-4 py-8">
+        <div class="flex justify-center mb-8">
+            <button id="btnCopiar" onclick="copiarTodosAlias()"
+                class="px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 rounded-full text-white text-sm font-bold transition transform hover:scale-105 shadow-lg whitespace-nowrap">
+                📋 Copiar Todos os Alias
+            </button>
+        </div>
+
+        <!-- INSTRUÇÕES -->
+        <div class="bg-slate-900 border border-slate-700 rounded p-6 mb-8">
+            <h2 class="text-xl font-bold text-slate-300 mb-6"># Como Instalar</h2>
+
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-slate-400 font-bold mb-3">## Primeira vez no Linux</h3>
+                    <div class="bg-slate-950 border border-slate-700 rounded p-3 space-y-1 text-sm">
+                        <div class="text-slate-500"># Abra o arquivo de configuração:</div>
+                        <div class="flex items-center group">
+                            <div class="text-slate-300">vim ~/.bashrc</div>
+                            <button onclick="copiarTexto('vim ~/.bashrc', this)"
+                                class="text-slate-500 hover:text-white transition ml-3" title="Copiar">📋</button>
+                        </div>
+                        <div class="text-slate-500 mt-3"># Pressione "Shift+G" (final), "o" (inserir em nova linha
+                            abaixo) e cole seus aliases</div>
+                        <div class="text-slate-500"># Pressione ESC, digite ":wq" (salvar e sair) e aperte ENTER para
+                            salvar e sair</div>
+                        <div class="text-slate-500 mt-3"># Recarregue o arquivo:</div>
+                        <div class="flex items-center group">
+                            <div class="text-slate-300">source ~/.bashrc</div>
+                            <button onclick="copiarTexto('source ~/.bashrc', this)"
+                                class="text-slate-500 hover:text-white transition ml-3" title="Copiar">📋</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-slate-400 font-bold mb-3">## Alterar alias já instalados</h3>
+                    <div class="bg-slate-950 border border-slate-700 rounded p-3 space-y-1 text-sm">
+                        <div class="flex items-center group">
+                            <div class="text-slate-300">subl ~/.bashrc</div>
+                            <button onclick="copiarTexto('subl ~/.bashrc', this)"
+                                class="text-slate-500 hover:text-white transition ml-3" title="Copiar">📋</button>
+                        </div>
+                        <div class="text-slate-500 mt-3"># Faça suas alterações e salve novamente</div>
+                        <div class="flex items-center group mt-3">
+                            <div class="text-slate-300">source ~/.bashrc</div>
+                            <button onclick="copiarTexto('source ~/.bashrc', this)"
+                                class="text-slate-500 hover:text-white transition ml-3" title="Copiar">📋</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEARCH -->
+        <div class="mb-8 flex flex-col sm:flex-row gap-4">
+            <input type="text" id="searchInput" placeholder="🔍 Procure por alias, comando ou categoria..."
+                class="flex-1 px-4 py-2 bg-slate-800 border border-slate-700 rounded text-slate-100 placeholder-slate-500 focus:outline-none focus:border-slate-600 text-sm">
+        </div>
+
+        <!-- ALIASES -->
+        <div id="aliasGrid" class="space-y-2 mb-12"></div>
+
+        <div id="noResults" class="hidden text-slate-500 text-center py-8">
+            Nenhum alias encontrado
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 border-t border-slate-700 py-4">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h3 class="text-slate-400 text-sm">Desenvolvido por <a href="https://meuweb.site" target="_blank"
+                    class="text-slate-300 hover:text-slate-100"
+                    style="font-family: Oleo Script,cursive; font-size: larger; ">meuWeb.site</a>
+            </h3>
+        </div>
+    </footer>
+
+    <script src="alias.js"></script>
+    <script>
+        function carregarAlias(dados = aliasData) {
+            const grid = document.getElementById('aliasGrid');
+            const noResults = document.getElementById('noResults');
+
+            grid.innerHTML = '';
+
+            if (dados.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            }
+
+            noResults.classList.add('hidden');
+
+            let categoriaAtual = '';
+            dados.forEach(item => {
+                if (item.categoria !== categoriaAtual) {
+                    categoriaAtual = item.categoria;
+                    const categoria = document.createElement('div');
+                    categoria.className = 'text-slate-500 text-sm mt-6 mb-2';
+                    categoria.textContent = `# Categoria: ${categoriaAtual}`;
+                    grid.appendChild(categoria);
+                }
+
+                const line = document.createElement('div');
+                line.className = 'bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded text-sm transition text-slate-300';
+                line.innerHTML = `alias <span class="text-slate-400">${item.alias}</span>='<span class="text-slate-500">${item.comando}</span>'`;
+                grid.appendChild(line);
+            });
+        }
+
+        document.getElementById('searchInput').addEventListener('keyup', (e) => {
+            const termo = e.target.value.toLowerCase();
+            const resultados = aliasData.filter(item =>
+                item.alias.toLowerCase().includes(termo) ||
+                item.comando.toLowerCase().includes(termo) ||
+                item.categoria.toLowerCase().includes(termo)
+            );
+            carregarAlias(resultados);
+        });
+
+        function copiarTodosAlias() {
+            let texto = "# --- Meus Alias ---\n";
+            let categoriaAtual = '';
+
+            aliasData.forEach(item => {
+                if (item.categoria !== categoriaAtual) {
+                    categoriaAtual = item.categoria;
+                    texto += `\n# [ ${categoriaAtual} ]\n`;
+                }
+                texto += `alias ${item.alias}='${item.comando}'\n`;
+            });
+
+            navigator.clipboard.writeText(texto).then(() => {
+                const btn = document.getElementById('btnCopiar');
+                const originalText = btn.innerText;
+                btn.innerText = '✅ Copiado!';
+
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                }, 2000);
+            });
+        }
+
+        function copiarTexto(texto, btn) {
+            navigator.clipboard.writeText(texto).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = '✅';
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                }, 2000);
+            });
+        }
+
+        carregarAlias();
+    </script>
+</body>
+
+</html>
